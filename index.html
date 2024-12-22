@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animación de Matrix</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            color: #0F0;
+            font-family: monospace;
+            font-size: 20px;
+        }
+        .matrix {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .char {
+            position: absolute;
+            bottom: 100%;
+            color: #0F0;
+            white-space: nowrap;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix"></div>
+    <script>
+        const matrix = document.querySelector('.matrix');
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const numChars = 100;
+
+        for (let i = 0; i < numChars; i++) {
+            const char = document.createElement('div');
+            char.className = 'char';
+            char.textContent = characters.charAt(Math.floor(Math.random() * characters.length));
+            char.style.left = Math.random() * 100 + 'vw';
+            char.style.animationDuration = Math.random() * 3 + 2 + 's';
+            matrix.appendChild(char);
+        }
+
+        const text = document.createElement('div');
+        text.textContent = 'Todo es subconsciente';
+        text.style.position = 'absolute';
+        text.style.top = '50%';
+        text.style.left = '50%';
+        text.style.transform = 'translate(-50%, -50%)';
+        text.style.fontSize = '40px';
+        text.style.color = '#0F0';
+        matrix.appendChild(text);
+    </script>
+</body>
+</html>
